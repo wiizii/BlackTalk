@@ -36,7 +36,7 @@ const MainNavigator = () => {
 export default () => {
   return (
     <NavigationContainer>
-      <Login />
+      <MainNavigator />
     </NavigationContainer>
   );
 };
