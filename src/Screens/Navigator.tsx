@@ -5,7 +5,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import {UserContext} from '~/Context/User';
 
-import Home from '~/Screens/Home';
+import Chat from '~/Screens/Chat';
 import Login from '~/Screens/Login';
 import CustomDrawer from '~/Screens/Drawer';
 import Loading from '~/Screens/Loading';
@@ -17,8 +17,8 @@ const Main = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
-        component={Home}
+        name="Chat"
+        component={Chat}
         options={{title: 'BlackTalk'}}
       />
     </Stack.Navigator>
