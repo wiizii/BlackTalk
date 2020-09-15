@@ -9,6 +9,7 @@ import Chat from '~/Screens/Chat';
 import Login from '~/Screens/Login';
 import CustomDrawer from '~/Screens/Drawer';
 import Loading from '~/Screens/Loading';
+import Test from '~/Screens/Test';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -45,7 +46,8 @@ export default () => {
 
   return (
     <NavigationContainer>
-      {userID != 'empty' ? <MainNavigator /> : <Login />}
+      {/* {userID != 'empty' ? <MainNavigator /> : <Login />} */}
+      <Test />
     </NavigationContainer>
   );
 };
