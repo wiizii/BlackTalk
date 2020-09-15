@@ -46,8 +46,7 @@ export default () => {
 
   return (
     <NavigationContainer>
-      {/* {userID != 'empty' ? <MainNavigator /> : <Login />} */}
-      <Test />
+      {userID != 'empty' ? <MainNavigator /> : <Login />}
     </NavigationContainer>
   );
 };
