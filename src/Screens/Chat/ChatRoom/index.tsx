@@ -6,7 +6,7 @@ import SystemMessage from './SystemMessage';
 import MessageBubble from './MessageBubble';
 import ChatRoomInput from './ChatRoomInput';
 
-axios.defaults.baseURL = 'http://192.168.200.167:80';
+axios.defaults.baseURL = 'http://172.30.1.29:80';
 
 const USER_ID = 'wizi';
 
@@ -35,7 +35,7 @@ const messages = [
 ];
 
 const ChatRoom = () => {
-  const ws = new WebSocket('ws://192.168.200.167:80');
+  const ws = new WebSocket('ws://172.30.1.29:80');
 
   const [messages, setMessages] = useState<any[]>([]);
   const [isSocketOpen, setIsSocketOpen] = useState<boolean>(true);
@@ -52,15 +52,9 @@ const ChatRoom = () => {
     addMessage(message);
 
     if (isSocketOpen) {
-      axios.post('/nick', {
-        nick: 'wizi',
-      });
       axios
         .post('/chat', {
           chat: message.body,
-        })
-        .then(() => {
-          console.log('success');
         })
         .catch((err) => {
           console.error(err);

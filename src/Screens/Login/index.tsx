@@ -8,6 +8,7 @@ import {
   Alert,
 } from 'react-native';
 import {UserContext} from '~/Context/User';
+import axios from 'axios';
 
 const styles = StyleSheet.create({
   container: {
@@ -43,11 +44,18 @@ const styles = StyleSheet.create({
   },
 });
 
+axios.defaults.baseURL = 'http://192.168.200.167:80';
 interface Props {}
 
 const Login = ({}: Props) => {
   const {login, logout} = useContext<IUserContext>(UserContext);
   const [userID, setUserID] = useState<string>('');
+
+  const submit = () => {
+    axios.post('/nick', {
+      nick: userID,
+    });
+  };
 
   const showAlert = () => {
     Alert.alert('주의');
@@ -65,6 +73,7 @@ const Login = ({}: Props) => {
         activeOpacity={0.3}
         onPress={() => {
           login(userID);
+          submit();
           showAlert();
         }}
         style={styles.buttonContainer}>
