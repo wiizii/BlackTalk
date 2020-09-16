@@ -73,7 +73,7 @@ const Login = ({}: Props) => {
       <TouchableOpacity
         activeOpacity={0.3}
         onPress={() => {
-          logout;
+          logout();
         }}
         style={styles.buttonContainer}>
         <Text style={styles.buttonText}>로그아웃</Text>

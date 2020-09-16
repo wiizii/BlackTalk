@@ -30,6 +30,7 @@ const UserContextProvider = ({children}: Props) => {
     AsyncStorage.getItem('userID')
       .then((value) => {
         if (value) {
+          console.log(value);
           setUserID(value);
         }
         setIsLoading(true);
@@ -43,6 +44,7 @@ const UserContextProvider = ({children}: Props) => {
   const logout = (): void => {
     AsyncStorage.removeItem('userID');
     setUserID('empty');
+    console.log(userID);
   };
 
   useEffect(() => {
