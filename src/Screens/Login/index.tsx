@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
 });
 
-axios.defaults.baseURL = 'http://192.168.200.167:80';
+axios.defaults.baseURL = 'http://172.30.1.29:80';
 interface Props {}
 
 const Login = ({}: Props) => {
@@ -78,14 +78,6 @@ const Login = ({}: Props) => {
         }}
         style={styles.buttonContainer}>
         <Text style={styles.buttonText}>접속</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={0.3}
-        onPress={() => {
-          logout();
-        }}
-        style={styles.buttonContainer}>
-        <Text style={styles.buttonText}>로그아웃</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

@@ -1,60 +1,65 @@
-import React, {useEffect, useState} from 'react';
-import {KeyboardAvoidingView, FlatList, StyleSheet, View} from 'react-native';
+import React, {useEffect, useState, useContext} from 'react';
+import {
+  KeyboardAvoidingView,
+  FlatList,
+  StyleSheet,
+  View,
+  Button,
+} from 'react-native';
+import {UserContext} from '~/Context/User';
 import axios from 'axios';
+import io from 'socket.io-client';
 
 import SystemMessage from './SystemMessage';
 import MessageBubble from './MessageBubble';
 import ChatRoomInput from './ChatRoomInput';
 
-axios.defaults.baseURL = 'http://172.30.1.29:80';
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#1BA2FB',
+    flex: 1,
+  },
+  flatListContainer: {
+    flex: 1,
+    paddingHorizontal: 16,
+  },
+});
 
-const USER_ID = 'wizi';
+const baseURL = 'http://172.30.1.29:80';
 
-const messages = [
-  {
-    id: '3',
-    body: 'Doing good! Thanks!',
-    time: '4 minutes ago',
-    senderID: 'andrea',
-    type: 'user',
-  },
-  {
-    id: '2',
-    body: 'Hi, Andrea! How are you doing?',
-    time: '5 minutes ago',
-    senderID: 'michael',
-    type: 'user',
-  },
-  {
-    id: '1',
-    body: 'Chat has started!',
-    time: '5 minutes ago',
-    senderID: 'system',
-    type: 'system',
-  },
-];
+axios.defaults.baseURL = baseURL;
+
+let socket: any = undefined;
 
 const ChatRoom = () => {
-  const ws = new WebSocket('ws://172.30.1.29:80');
+  const {userID, logout} = useContext<IUserContext>(UserContext);
+  const [messages, setMessages] = useState<string[]>([]);
+  const [isSocketOpen, setIsSocketOpen] = useState<boolean>(false);
 
-  const [messages, setMessages] = useState<any[]>([]);
-  const [isSocketOpen, setIsSocketOpen] = useState<boolean>(true);
+  if (!isSocketOpen) {
+    socket = io.connect(baseURL, {
+      path: '/socket.io',
+    });
+    setIsSocketOpen(true);
+  }
 
-  const submit = (text: string) => {
+  socket.on('chat', (data: any) => {
     const message = {
-      id: Math.random().toString(),
-      body: text,
-      senderID: 'wizi',
-      time: '5 minutes ago',
+      id: data.user,
+      body: data.chat,
       type: 'user',
     };
+    addMessage(data.chat);
+  });
 
-    addMessage(message);
-
+  const submit = (message: string) => {
     if (isSocketOpen) {
       axios
         .post('/chat', {
-          chat: message.body,
+          chat: message,
+        })
+        .then(() => {
+          console.log('success');
         })
         .catch((err) => {
           console.error(err);
@@ -62,7 +67,7 @@ const ChatRoom = () => {
     }
   };
 
-  const addMessage = (message: any) => {
+  const addMessage = (message: string) => {
     const newMessages = [message, ...messages];
     setMessages(newMessages);
   };
@@ -75,9 +80,9 @@ const ChatRoom = () => {
     }
     return (
       <MessageBubble
-        alignToRight={item.senderID === USER_ID}
+        alignToRight={item.senderID === userID}
         body={item.body}
-        highlighted={item.senderID === USER_ID}
+        highlighted={item.senderID === userID}
         time={item.time}
       />
     );
@@ -97,19 +102,11 @@ const ChatRoom = () => {
         />
       </View>
       <ChatRoomInput onSubmit={submit} />
+      <View>
+        <Button title={'logout'} onPress={logout} />
+      </View>
     </KeyboardAvoidingView>
   );
 };
 
 export default ChatRoom;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#1BA2FB',
-    flex: 1,
-  },
-  flatListContainer: {
-    flex: 1,
-    paddingHorizontal: 16,
-  },
-});

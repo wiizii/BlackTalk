@@ -44,7 +44,6 @@ const UserContextProvider = ({children}: Props) => {
   const logout = (): void => {
     AsyncStorage.removeItem('userID');
     setUserID('empty');
-    console.log(userID);
   };
 
   useEffect(() => {
