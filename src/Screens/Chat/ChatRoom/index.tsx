@@ -33,7 +33,7 @@ let socket: any = undefined;
 
 const ChatRoom = () => {
   const {userID, logout} = useContext<IUserContext>(UserContext);
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<any[]>([]);
   const [isSocketOpen, setIsSocketOpen] = useState<boolean>(false);
 
   if (!isSocketOpen) {
@@ -44,12 +44,13 @@ const ChatRoom = () => {
   }
 
   socket.on('chat', (data: any) => {
+    console.log(data);
     const message = {
-      id: data.user,
-      body: data.chat,
+      user: data.user,
+      chat: data.chat,
       type: 'user',
     };
-    addMessage(data.chat);
+    addMessage(message);
   });
 
   const submit = (message: string) => {
@@ -67,7 +68,7 @@ const ChatRoom = () => {
     }
   };
 
-  const addMessage = (message: string) => {
+  const addMessage = (message: any) => {
     const newMessages = [message, ...messages];
     setMessages(newMessages);
   };
@@ -80,10 +81,10 @@ const ChatRoom = () => {
     }
     return (
       <MessageBubble
-        alignToRight={item.senderID === userID}
-        body={item.body}
-        highlighted={item.senderID === userID}
-        time={item.time}
+        alignToRight={item.user === userID}
+        userID={item.user}
+        highlighted={item.user === userID}
+        message={item.chat}
       />
     );
   };

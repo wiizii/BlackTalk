@@ -4,11 +4,11 @@ import {StyleSheet, Text, View} from 'react-native';
 interface Props {
   alignToRight: boolean;
   highlighted: boolean;
-  body: any;
-  time: any;
+  userID: string;
+  message: string;
 }
 
-const MessageBubble = ({alignToRight, highlighted, body, time}: Props) => {
+const MessageBubble = ({alignToRight, highlighted, userID, message}: Props) => {
   return (
     <View style={[styles.bubble, alignToRight && styles.bubbleOnRight]}>
       <View
@@ -16,13 +16,13 @@ const MessageBubble = ({alignToRight, highlighted, body, time}: Props) => {
           styles.bubbleTextContainer,
           highlighted && styles.bubbleTextContainerHighlighted,
         ]}>
-        <Text>{body}</Text>
+        <Text>{message}</Text>
         <Text
           style={[
             styles.bubbleMetaText,
             alignToRight && styles.bubbleMetaTextOnRight,
           ]}>
-          {time}
+          {userID}
         </Text>
       </View>
     </View>
