@@ -25,7 +25,7 @@ const ChatRoomInput = ({onSubmit}: Props) => {
         onChangeText={setText}
         onSubmitEditing={submit}
         placeholder="Type message ..."
-        placeholderTextColor="#DDDDD"
+        placeholderTextColor="#DDDDDD"
         style={styles.textInput}
         value={text}
       />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -7,34 +7,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-
-interface Props {}
-
-const Login = ({}: Props) => {
-  const showAlert = () => {
-    Alert.alert('주의');
-  };
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Black Talk</Text>
-      <TextInput
-        placeholder={'6자리 이내로 입력해주세요'}
-        style={styles.input}
-      />
-      <TouchableOpacity
-        activeOpacity={0.3}
-        onPress={() => {
-          showAlert();
-        }}
-        style={styles.buttonContainer}>
-        <Text style={styles.buttonText}>접속</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
-  );
-};
-
-export default Login;
+import {UserContext} from '~/Context/User';
 
 const styles = StyleSheet.create({
   container: {
@@ -69,3 +42,44 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
+
+interface Props {}
+
+const Login = ({}: Props) => {
+  const {login, logout} = useContext<IUserContext>(UserContext);
+  const [userID, setUserID] = useState<string>('');
+
+  const showAlert = () => {
+    Alert.alert('주의');
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Black Talk</Text>
+      <TextInput
+        onChangeText={setUserID}
+        placeholder={'6자리 이내로 입력해주세요'}
+        style={styles.input}
+      />
+      <TouchableOpacity
+        activeOpacity={0.3}
+        onPress={() => {
+          login(userID);
+          showAlert();
+        }}
+        style={styles.buttonContainer}>
+        <Text style={styles.buttonText}>접속</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.3}
+        onPress={() => {
+          logout;
+        }}
+        style={styles.buttonContainer}>
+        <Text style={styles.buttonText}>로그아웃</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
+};
+
+export default Login;

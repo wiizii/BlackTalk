@@ -16,7 +16,7 @@ interface Props {
 }
 
 const UserContextProvider = ({children}: Props) => {
-  const [userID, setUserID] = useState<string>('ID');
+  const [userID, setUserID] = useState<string>('empty');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const login = (ID: string): void => {
@@ -30,7 +30,7 @@ const UserContextProvider = ({children}: Props) => {
     AsyncStorage.getItem('userID')
       .then((value) => {
         if (value) {
-          setUserID('here ID add');
+          setUserID(value);
         }
         setIsLoading(true);
       })

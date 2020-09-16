@@ -1,17 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {
-  KeyboardAvoidingView,
-  FlatList,
-  Image,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {KeyboardAvoidingView, FlatList, StyleSheet, View} from 'react-native';
+import axios from 'axios';
 
 import SystemMessage from './SystemMessage';
 import MessageBubble from './MessageBubble';
 import ChatRoomInput from './ChatRoomInput';
+
+axios.defaults.baseURL = 'http://192.168.200.167:80';
 
 const USER_ID = 'wizi';
 
@@ -40,10 +35,10 @@ const messages = [
 ];
 
 const ChatRoom = () => {
-  const ws = new WebSocket('ws://localhost:8000');
-  const isSocketOpen = false;
+  const ws = new WebSocket('ws://192.168.200.167:80');
 
   const [messages, setMessages] = useState<any[]>([]);
+  const [isSocketOpen, setIsSocketOpen] = useState<boolean>(true);
 
   const submit = (text: string) => {
     const message = {
@@ -57,7 +52,19 @@ const ChatRoom = () => {
     addMessage(message);
 
     if (isSocketOpen) {
-      ws.send(text);
+      axios.post('/nick', {
+        nick: 'wizi',
+      });
+      axios
+        .post('/chat', {
+          chat: message.body,
+        })
+        .then(() => {
+          console.log('success');
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
   };
 
