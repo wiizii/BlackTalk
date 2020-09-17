@@ -46,9 +46,9 @@ const ChatRoom = () => {
   socket.on('chat', (data: any) => {
     console.log(data);
     const message = {
+      id: 1,
       user: data.user,
       chat: data.chat,
-      type: 'user',
     };
     addMessage(message);
   });
@@ -73,8 +73,6 @@ const ChatRoom = () => {
     setMessages(newMessages);
   };
 
-  const keyExtractor = (item: any) => item.id;
-
   const renderItem = ({item}: any) => {
     if (item.type === 'system') {
       return <SystemMessage body={item.body} time={item.time} />;
@@ -98,7 +96,7 @@ const ChatRoom = () => {
         <FlatList
           data={messages}
           inverted={true}
-          keyExtractor={keyExtractor}
+          //추후에 keyExtractor 추가하기
           renderItem={renderItem}
         />
       </View>
