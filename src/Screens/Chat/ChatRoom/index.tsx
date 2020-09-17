@@ -14,17 +14,6 @@ import SystemMessage from './SystemMessage';
 import MessageBubble from './MessageBubble';
 import ChatRoomInput from './ChatRoomInput';
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#1BA2FB',
-    flex: 1,
-  },
-  flatListContainer: {
-    flex: 1,
-    paddingHorizontal: 16,
-  },
-});
-
 const baseURL = 'http://172.30.1.29:80';
 
 axios.defaults.baseURL = baseURL;
@@ -33,7 +22,20 @@ let socket: any = undefined;
 
 const ChatRoom = () => {
   const {userID, logout} = useContext<IUserContext>(UserContext);
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<any[]>([
+    {user: 'other', chat: 'test'},
+  ]);
+
+  const submit = (message: string) => {
+    const newMessage = {
+      user: 'wizi',
+      chat: message,
+    };
+    addMessage(newMessage);
+  };
+
+  /*
+  //socket 연결 및 데이터 동기화 부분
   const [isSocketOpen, setIsSocketOpen] = useState<boolean>(false);
 
   if (!isSocketOpen) {
@@ -67,6 +69,7 @@ const ChatRoom = () => {
         });
     }
   };
+  */
 
   const addMessage = (message: any) => {
     const newMessages = [message, ...messages];
@@ -79,9 +82,9 @@ const ChatRoom = () => {
     }
     return (
       <MessageBubble
-        alignToRight={item.user === userID}
+        //userID -> 'wizi'
+        alignToRight={item.user === 'wizi'}
         userID={item.user}
-        highlighted={item.user === userID}
         message={item.chat}
       />
     );
@@ -109,3 +112,14 @@ const ChatRoom = () => {
 };
 
 export default ChatRoom;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'black',
+    flex: 1,
+  },
+  flatListContainer: {
+    flex: 1,
+    paddingHorizontal: 16,
+  },
+});

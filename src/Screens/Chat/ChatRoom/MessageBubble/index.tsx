@@ -3,27 +3,19 @@ import {StyleSheet, Text, View} from 'react-native';
 
 interface Props {
   alignToRight: boolean;
-  highlighted: boolean;
   userID: string;
   message: string;
 }
 
-const MessageBubble = ({alignToRight, highlighted, userID, message}: Props) => {
+const MessageBubble = ({alignToRight, userID, message}: Props) => {
   return (
-    <View style={[styles.bubble, alignToRight && styles.bubbleOnRight]}>
+    <View style={(styles.container, alignToRight && styles.containerOnRight)}>
       <View
-        style={[
-          styles.bubbleTextContainer,
-          highlighted && styles.bubbleTextContainerHighlighted,
-        ]}>
+        style={[styles.nickNameContainer, alignToRight && styles.alignToRight]}>
+        <Text style={[styles.nickName]}>{userID}</Text>
+      </View>
+      <View style={[styles.bubble, alignToRight && styles.alignToRight]}>
         <Text>{message}</Text>
-        <Text
-          style={[
-            styles.bubbleMetaText,
-            alignToRight && styles.bubbleMetaTextOnRight,
-          ]}>
-          {userID}
-        </Text>
       </View>
     </View>
   );
@@ -32,15 +24,36 @@ const MessageBubble = ({alignToRight, highlighted, userID, message}: Props) => {
 export default MessageBubble;
 
 const styles = StyleSheet.create({
-  bubble: {
-    flexDirection: 'row',
+  container: {
+    flexDirection: 'column',
     marginBottom: 16,
+    backgroundColor: 'red',
   },
-  bubbleOnRight: {
+  containerOnRight: {
+    alignItems: 'flex-end',
+  },
+  alignToRight: {
     justifyContent: 'flex-end',
   },
-  bubbleMetaText: {
-    color: '#A97B78',
+  nickNameContainer: {
+    flexDirection: 'row',
+    backgroundColor: 'green',
+  },
+  nickName: {
+    color: 'yellow',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  bubble: {
+    width: '40%',
+    flexDirection: 'row',
+    marginBottom: 16,
+    backgroundColor: 'white',
+    borderRadius: 25,
+  },
+  bubbleOnRight: {},
+  userText: {
+    color: 'yellow',
     marginTop: 8,
     fontSize: 11,
   },
@@ -55,10 +68,6 @@ const styles = StyleSheet.create({
   bubbleTextContainerHighlighted: {
     backgroundColor: '#EEEEEE',
   },
-  profileImage: {
-    height: 45,
-    width: 45,
-  },
   systemMessage: {
     alignItems: 'center',
     paddingVertical: 32,
@@ -67,10 +76,5 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 13,
     fontWeight: '700',
-  },
-  container: {
-    backgroundColor: '#1BA2FB',
-    flex: 1,
-    paddingHorizontal: 16,
   },
 });
