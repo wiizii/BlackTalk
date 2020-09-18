@@ -9,13 +9,29 @@ interface Props {
 
 const MessageBubble = ({alignToRight, userID, message}: Props) => {
   return (
-    <View style={(styles.container, alignToRight && styles.containerOnRight)}>
+    <View
+      style={[
+        styles.container,
+        alignToRight ? styles.containerOnRight : styles.containerOnLeft,
+      ]}>
       <View
         style={[styles.nickNameContainer, alignToRight && styles.alignToRight]}>
-        <Text style={[styles.nickName]}>{userID}</Text>
+        <Text
+          style={[
+            styles.nickName,
+            alignToRight ? styles.nickNameOnRight : styles.nickNameOnLeft,
+          ]}>
+          {userID}
+        </Text>
       </View>
-      <View style={[styles.bubble, alignToRight && styles.alignToRight]}>
-        <Text>{message}</Text>
+      <View style={[styles.textContainer, alignToRight && styles.alignToRight]}>
+        <Text
+          style={[
+            styles.text,
+            alignToRight ? styles.textOnRight : styles.textOnLeft,
+          ]}>
+          {message}
+        </Text>
       </View>
     </View>
   );
@@ -26,8 +42,10 @@ export default MessageBubble;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    marginBottom: 16,
-    backgroundColor: 'red',
+    marginBottom: 14,
+  },
+  containerOnLeft: {
+    alignItems: 'flex-start',
   },
   containerOnRight: {
     alignItems: 'flex-end',
@@ -37,36 +55,38 @@ const styles = StyleSheet.create({
   },
   nickNameContainer: {
     flexDirection: 'row',
-    backgroundColor: 'green',
+    alignItems: 'flex-start',
   },
   nickName: {
+    fontSize: 15,
+    fontWeight: '500',
+    marginBottom: 4,
+  },
+  nickNameOnLeft: {
+    color: 'white',
+  },
+  nickNameOnRight: {
     color: 'yellow',
-    fontSize: 16,
+  },
+  textContainer: {
+    borderWidth: 1,
+    borderColor: 'white',
+    flexDirection: 'row',
+    backgroundColor: 'black',
+    borderRadius: 6,
+    alignItems: 'center',
+    maxWidth: '60%',
+  },
+  text: {
+    padding: 6,
+    fontSize: 15,
     fontWeight: '600',
   },
-  bubble: {
-    width: '40%',
-    flexDirection: 'row',
-    marginBottom: 16,
-    backgroundColor: 'white',
-    borderRadius: 25,
+  textOnLeft: {
+    color: 'white',
   },
-  bubbleOnRight: {},
-  userText: {
+  textOnRight: {
     color: 'yellow',
-    marginTop: 8,
-    fontSize: 11,
-  },
-  bubbleMetaTextOnRight: {
-    textAlign: 'right',
-  },
-  bubbleTextContainer: {
-    alignSelf: 'flex-start',
-    backgroundColor: '#FFFFFF',
-    padding: 24,
-  },
-  bubbleTextContainerHighlighted: {
-    backgroundColor: '#EEEEEE',
   },
   systemMessage: {
     alignItems: 'center',
