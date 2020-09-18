@@ -104,9 +104,9 @@ const ChatRoom = () => {
         />
       </View>
       <ChatRoomInput onSubmit={submit} />
-      <View>
+      {/* <View>
         <Button title={'logout'} onPress={logout} />
-      </View>
+      </View> */}
     </KeyboardAvoidingView>
   );
 };

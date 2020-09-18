@@ -20,18 +20,18 @@ const ChatRoomInput = ({onSubmit}: Props) => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         onChangeText={setText}
         onSubmitEditing={submit}
-        placeholder="Type message ..."
-        placeholderTextColor="#DDDDDD"
+        placeholder="Type message"
+        placeholderTextColor="#BBBBBB"
         style={styles.textInput}
         value={text}
       />
 
       <TouchableOpacity style={styles.sendButton} onPress={submit}>
-        <Text>send</Text>
+        <Text>보내기</Text>
       </TouchableOpacity>
     </View>
   );
@@ -40,22 +40,28 @@ const ChatRoomInput = ({onSubmit}: Props) => {
 export default ChatRoomInput;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flexDirection: 'row',
+    paddingBottom: '8%',
+  },
   sendButton: {
     position: 'absolute',
-    right: 16,
-    bottom: 30,
+    right: '4%',
     alignItems: 'center',
-    backgroundColor: '#FDBDB9',
+    backgroundColor: 'yellow',
     borderRadius: 30,
-    height: 60,
+    height: '67%',
     justifyContent: 'center',
-    width: 60,
+    width: '15%',
   },
   textInput: {
+    padding: '5%',
+    marginLeft: 20,
+    borderRadius: 20,
     backgroundColor: '#FFFFFF',
     color: '#000000',
-    height: 60,
+    width: '75%',
+    height: '60%',
     paddingHorizontal: 16,
   },
 });
