@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
     margin: '1%',
     borderWidth: 1,
     borderRadius: 4,
-    borderColor: 'black',
+    borderColor: 'white',
   },
   userText: {
     margin: '4%',
     fontWeight: '600',
-    color: 'black',
+    color: 'white',
   },
 });
