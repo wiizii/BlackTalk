@@ -33,7 +33,6 @@ const MainNavigator = () => {
   return (
     <Drawer.Navigator
       drawerPosition="right"
-      drawerType="slide"
       drawerContent={(props) => <CustomDrawer props={props} />}>
       <Drawer.Screen name="Main" component={Main} />
     </Drawer.Navigator>
