@@ -22,7 +22,7 @@ const Main = () => {
         options={{
           title: 'BlackTalk',
           headerStyle: {backgroundColor: '#222222'},
-          headerTintColor: 'red',
+          headerTintColor: 'yellow',
         }}
       />
     </Stack.Navigator>
