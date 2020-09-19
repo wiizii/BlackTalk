@@ -18,17 +18,17 @@ const baseURL = 'Your Server URL';
 
 axios.defaults.baseURL = baseURL;
 
-let socket: any = undefined;
+//let socket: any = undefined;
 
 const ChatRoom = () => {
-  const {userID, logout} = useContext<IUserContext>(UserContext);
+  const {userID} = useContext<IUserContext>(UserContext);
   const [messages, setMessages] = useState<any[]>([
     {user: 'other', chat: 'test'},
   ]);
 
   const submit = (message: string) => {
     const newMessage = {
-      user: 'wizi',
+      user: userID,
       chat: message,
     };
     addMessage(newMessage);
@@ -83,7 +83,7 @@ const ChatRoom = () => {
     return (
       <MessageBubble
         //userID -> 'wizi'
-        alignToRight={item.user === 'wizi'}
+        alignToRight={item.user === userID}
         userID={item.user}
         message={item.chat}
       />
@@ -104,9 +104,6 @@ const ChatRoom = () => {
         />
       </View>
       <ChatRoomInput onSubmit={submit} />
-      {/* <View>
-        <Button title={'logout'} onPress={logout} />
-      </View> */}
     </KeyboardAvoidingView>
   );
 };
