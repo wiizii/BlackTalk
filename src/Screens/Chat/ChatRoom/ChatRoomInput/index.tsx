@@ -22,6 +22,9 @@ const ChatRoomInput = ({onSubmit}: Props) => {
   return (
     <View style={styles.container}>
       <TextInput
+        autoCapitalize={'none'}
+        keyboardAppearance={'dark'}
+        keyboardType={'default'}
         onChangeText={setText}
         onSubmitEditing={submit}
         placeholder="Type message"
