@@ -14,7 +14,7 @@ import SystemMessage from './SystemMessage';
 import MessageBubble from './MessageBubble';
 import ChatRoomInput from './ChatRoomInput';
 
-const baseURL = 'http://172.30.1.29:80';
+const baseURL = 'Your Server URL';
 
 axios.defaults.baseURL = baseURL;
 

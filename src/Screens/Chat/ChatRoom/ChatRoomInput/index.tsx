@@ -15,8 +15,12 @@ const ChatRoomInput = ({onSubmit}: Props) => {
   const [text, setText] = useState<string>('');
 
   const submit = () => {
-    onSubmit(text);
-    setText('');
+    if (text !== '') {
+      onSubmit(text);
+      setText('');
+    } else {
+      setText('');
+    }
   };
 
   return (
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     paddingBottom: '12%',
-    marginHorizontal: '3%',
+    marginHorizontal: '1%',
   },
   sendButton: {
     backgroundColor: 'yellow',
@@ -60,6 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     borderRadius: 20,
     backgroundColor: '#FFFFFF',
-    width: '85%',
+    width: '83%',
+    marginRight: '1%',
   },
 });
