@@ -31,7 +31,11 @@ const Drawer = ({props}: Props) => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.userListText}>UserList</Text>
       <View style={styles.userListContainer}>
-        <FlatList data={users} renderItem={renderItem} />
+        <FlatList
+          data={users}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
       </View>
       <TouchableOpacity style={styles.logoutContainer} onPress={() => logout()}>
         <Image source={require('~/Assets/Images/exit.png')} />

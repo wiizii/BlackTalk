@@ -98,6 +98,7 @@ const ChatRoom = () => {
         <FlatList
           data={messages}
           inverted={true}
+          keyExtractor={(item, index) => index.toString()}
           //추후에 keyExtractor 추가하기
           renderItem={renderItem}
         />
