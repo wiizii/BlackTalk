@@ -19,17 +19,9 @@ interface Props {
   props: DrawerContentComponentProps<DrawerContentOptions>;
 }
 
-const makeTestUserList = (n: number): string[] => {
-  let users = [];
-  for (let i = 1; i <= n; i++) {
-    users.push('testUser' + i);
-  }
-  return users;
-};
-
 const Drawer = ({props}: Props) => {
   const {logout} = useContext<IUserContext>(UserContext);
-  const [users, setUsers] = useState<string[]>(makeTestUserList(20));
+  const [users, setUsers] = useState<string[]>(['wizi', 'other']);
 
   const renderItem = ({item}: any) => {
     return <UserList user={item} />;

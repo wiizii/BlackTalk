@@ -82,7 +82,6 @@ const ChatRoom = () => {
     }
     return (
       <MessageBubble
-        //userID -> 'wizi'
         alignToRight={item.user === userID}
         userID={item.user}
         message={item.chat}
