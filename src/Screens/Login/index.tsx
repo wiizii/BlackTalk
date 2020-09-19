@@ -25,7 +25,7 @@ const Login = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="blue" barStyle="light-content" />
+      <StatusBar backgroundColor="black" barStyle="light-content" />
       <Text style={styles.title}>Black Talk</Text>
       <TextInput
         autoCapitalize={'none'}
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '600',
-    color: 'red',
+    color: 'yellow',
     marginTop: '20%',
     marginBottom: '20%',
   },
@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   buttonContainer: {
-    backgroundColor: 'red',
+    borderWidth: 2,
+    borderColor: 'yellow',
     borderRadius: 4,
     width: '80%',
     height: '5%',
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: 'black',
+    color: 'yellow',
     fontWeight: 'bold',
     alignSelf: 'center',
   },
