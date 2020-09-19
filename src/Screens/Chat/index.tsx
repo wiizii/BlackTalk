@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {DrawerActions} from '@react-navigation/native';
 
 import ChatRoom from './ChatRoom';
 import Loading from '~/Screens/Loading';

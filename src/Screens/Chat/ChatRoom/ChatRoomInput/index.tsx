@@ -31,7 +31,7 @@ const ChatRoomInput = ({onSubmit}: Props) => {
       />
 
       <TouchableOpacity style={styles.sendButton} onPress={submit}>
-        <Text>보내기</Text>
+        <Text>Send</Text>
       </TouchableOpacity>
     </View>
   );
