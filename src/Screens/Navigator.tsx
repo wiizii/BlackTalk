@@ -9,7 +9,6 @@ import Chat from '~/Screens/Chat';
 import Login from '~/Screens/Login';
 import CustomDrawer from '~/Screens/Drawer';
 import Loading from '~/Screens/Loading';
-import Test from '~/Screens/Test';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -20,7 +19,11 @@ const Main = () => {
       <Stack.Screen
         name="Chat"
         component={Chat}
-        options={{title: 'BlackTalk'}}
+        options={{
+          title: 'BlackTalk',
+          headerStyle: {backgroundColor: '#222222'},
+          headerTintColor: 'red',
+        }}
       />
     </Stack.Navigator>
   );

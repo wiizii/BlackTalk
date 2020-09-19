@@ -42,26 +42,21 @@ export default ChatRoomInput;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    paddingBottom: '8%',
+    paddingBottom: '12%',
+    marginHorizontal: '3%',
   },
   sendButton: {
-    position: 'absolute',
-    right: '4%',
-    alignItems: 'center',
     backgroundColor: 'yellow',
     borderRadius: 30,
-    height: '67%',
+    alignItems: 'center',
     justifyContent: 'center',
     width: '15%',
   },
   textInput: {
-    padding: '5%',
-    marginLeft: 20,
+    padding: '3%',
+    fontSize: 14,
     borderRadius: 20,
     backgroundColor: '#FFFFFF',
-    color: '#000000',
-    width: '75%',
-    height: '60%',
-    paddingHorizontal: 16,
+    width: '85%',
   },
 });

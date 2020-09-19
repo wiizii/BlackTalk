@@ -1,17 +1,20 @@
-import React, {useContext} from 'react';
-import {Text} from 'react-native';
-import {
-  DrawerContentScrollView,
-  DrawerContentComponentProps,
-  DrawerContentOptions,
-} from '@react-navigation/drawer';
+import React from 'react';
+import {ScrollView, SafeAreaView, Text, StyleSheet} from 'react-native';
 
-interface Props {
-  props: DrawerContentComponentProps<DrawerContentOptions>;
-}
-
-const Drawer = ({props}: Props) => {
-  return <Text>Drawer</Text>;
+const Drawer = () => {
+  return (
+    <ScrollView>
+      <SafeAreaView>
+        <Text style={styles.container}>test</Text>
+      </SafeAreaView>
+    </ScrollView>
+  );
 };
 
 export default Drawer;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'red',
+  },
+});
